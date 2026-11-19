@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <h1 class="mb-4">Add a movie</h1>
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h5 class="mb-3">Add a movie to <%= @list.name %></h5>
+
+          <%= simple_form_for [@list, @bookmark] do |f| %>
+            <%= f.input :movie_id,
+                collection: @movies,
+                label_method: :title,
+                value_method: :id,
+                prompt: "Choose a movie",
+                label: "Movie" %>
+
+            <%= f.input :comment,
+                placeholder: "What did you think of this movie?",
+                label: "Your comment" %>
+            <%= f.button :submit, "Add movie", class: "btn btn-success w-100 mt-3" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <%= link_to "← Back to the list", list_path(@list),
+            class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
